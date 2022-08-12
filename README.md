@@ -1,3 +1,3 @@
 # Batch-Ensemble-Stochastic-Neural-Networks
 
-Placeholder
+Code to reproduce experiment results.
