@@ -15,7 +15,7 @@ from ignite.metrics import Accuracy, Average, Loss
 from ignite.contrib.handlers import ProgressBar
 
 from utils.wide_resnet import WideResNet
-from utils.resnet_duq import *
+from utils.resnet_snn_be import *
 from utils.datasets import all_datasets
 from utils.evaluate_ood import get_cifar_svhn_ood_be, get_auroc_classification_be
 from utils.utils import setup_seed, accuracy_confidence_data, plot_bar, plot_ece, calculate_ece
@@ -155,7 +155,6 @@ def main(
 
         with torch.no_grad():
             model.eval()
-            model.update_embeddings(x, y)
 
         return loss.item()
 
@@ -266,13 +265,6 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     parser.add_argument(
-        "--architecture",
-        default="ResNet18",
-        choices=["ResNet18", "WRN"],
-        help="Pick an architecture (default: ResNet18)",
-    )
-
-    parser.add_argument(
         "--batch_size",
         type=int,
         default=128,
@@ -296,7 +288,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--l_gradient_penalty",
         type=float,
-        default=0.75,
+        default=0.5,
         help="Weight for gradient penalty (default: 0.75)",
     )
 

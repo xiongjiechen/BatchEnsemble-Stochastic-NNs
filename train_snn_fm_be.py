@@ -160,7 +160,6 @@ def train_model(l_gradient_penalty, length_scale, final_model, num_models = 4):
 
         with torch.no_grad():
             model.eval()
-            model.update_embeddings(x, y)
 
         return loss.item()
 
